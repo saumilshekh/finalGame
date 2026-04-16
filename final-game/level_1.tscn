@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvrq8kh5magt5"]
+[gd_scene load_steps=10 format=3 uid="uid://cvrq8kh5magt5"]
 
 [ext_resource type="Texture2D" uid="uid://c7kego6phcay4" path="res://icon.svg" id="1_3hls8"]
+[ext_resource type="Script" uid="uid://co4am75sgolmb" path="res://level_1.gd" id="1_hn12h"]
 [ext_resource type="PackedScene" uid="uid://dcfkm8jolcjgo" path="res://main_character.tscn" id="2_hbghi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3j1iw"]
@@ -9,13 +10,83 @@ size = Vector2(1151.5, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5a4d"]
 size = Vector2(123, 347.5)
 
+[sub_resource type="GDScript" id="GDScript_hn12h"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.has_method(\"nextLevel\"):
+		get_tree().change_scene_to_file(\"res://level_1_clear.tscn\")
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfi58"]
 size = Vector2(141, 277)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hbghi"]
 size = Vector2(1151.5, 20)
 
+[sub_resource type="GDScript" id="GDScript_ihfcg"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+var lastPosition = 103
+var displacement = 0
+func nextLevel():
+	pass
+func _physics_process(delta: float) -> void:
+	
+	if position.x != lastPosition:
+		var temp = position.x
+		print(temp)
+		if temp > lastPosition:
+			temp = temp - lastPosition
+		else:
+			temp = lastPosition - temp
+		if temp < 1100:
+			displacement += (lastPosition - position.x)
+			print(lastPosition)
+		lastPosition = position.x
+		
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	
+	if Input.is_action_just_pressed(\"changeDimension\") and is_on_floor():
+		
+		if position.x < 3000:
+			position.x = 3135 - displacement
+		else:
+			position.x = 133 - displacement
+	
+	#3135
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+"
+
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_hn12h")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -42,6 +113,7 @@ texture = ExtResource("1_3hls8")
 
 [node name="Exit" type="Area2D" parent="."]
 position = Vector2(-1, 0)
+script = SubResource("GDScript_hn12h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 position = Vector2(984.5, 504.5)
@@ -82,5 +154,8 @@ texture = ExtResource("1_3hls8")
 
 [node name="MainCharacter" parent="." instance=ExtResource("2_hbghi")]
 position = Vector2(103, 550)
+script = SubResource("GDScript_ihfcg")
 
 [node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+
+[connection signal="body_entered" from="Exit" to="Exit" method="_on_body_entered"]

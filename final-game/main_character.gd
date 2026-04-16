@@ -5,6 +5,8 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var lastPosition = 103
 var displacement = 0
+func nextLevel():
+	pass
 func _physics_process(delta: float) -> void:
 	
 	if position.x != lastPosition:
