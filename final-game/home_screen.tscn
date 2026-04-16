@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxmtla2agjtt8"]
+
+[ext_resource type="Script" uid="uid://b0ov0k53lspfs" path="res://play.gd" id="1_olt8n"]
+
+[node name="Home Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 499.0
+offset_top = 253.0
+offset_right = 732.0
+offset_bottom = 298.0
+text = "Play"
+script = ExtResource("1_olt8n")
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 499.0
+offset_top = 363.0
+offset_right = 732.0
+offset_bottom = 408.0
+text = "Quit"
+
+[connection signal="pressed" from="Quit" to="Play" method="_on_quit_pressed"]
