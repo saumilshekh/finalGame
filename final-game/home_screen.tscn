@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxmtla2agjtt8"]
+[gd_scene load_steps=4 format=3 uid="uid://bxmtla2agjtt8"]
 
 [ext_resource type="Script" uid="uid://b0ov0k53lspfs" path="res://play.gd" id="1_olt8n"]
+[ext_resource type="Texture2D" uid="uid://ddgglo2twdcnb" path="res://Lab/MusicLabSample.png" id="2_outur"]
+[ext_resource type="Script" uid="uid://bxhy7a1aqm3yo" path="res://music_lab_sample.gd" id="3_fm0op"]
 
 [node name="Home Screen" type="Control"]
 layout_mode = 3
@@ -26,6 +28,15 @@ offset_top = 363.0
 offset_right = 732.0
 offset_bottom = 408.0
 text = "Quit"
+
+[node name="MusicLabSample" type="Sprite2D" parent="."]
+process_mode = 3
+auto_translate_mode = 1
+z_index = -2
+position = Vector2(937, 540)
+scale = Vector2(0.646552, 0.675455)
+texture = ExtResource("2_outur")
+script = ExtResource("3_fm0op")
 
 [connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Play" method="_on_quit_pressed"]
