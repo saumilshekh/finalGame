@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bq8rxstvc7aji" path="res://kenney_platformer-characters/SpaceBg.png" id="8_bjebc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3j1iw"]
-size = Vector2(1151.5, 20)
+size = Vector2(1827, 63)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5a4d"]
 size = Vector2(240, 235.5)
@@ -111,7 +111,7 @@ script = ExtResource("1_hn12h")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(577.25, 657)
+position = Vector2(239.5, 678.5)
 shape = SubResource("RectangleShape2D_3j1iw")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
@@ -179,28 +179,22 @@ script = SubResource("GDScript_ihfcg")
 
 [node name="Camera2D" type="Camera2D" parent="MainCharacter"]
 
-[node name="MusicLabSample" type="Sprite2D" parent="."]
-z_index = -3
-position = Vector2(55.8281, 408.641)
-scale = Vector2(0.754601, 0.663466)
-texture = SubResource("CompressedTexture2D_ggavl")
-
 [node name="MusicLabSample2" type="Sprite2D" parent="."]
 z_index = -3
-position = Vector2(358.828, 279)
+position = Vector2(562, 277)
 scale = Vector2(0.963567, 0.820606)
 texture = SubResource("CompressedTexture2D_ggavl")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
 
 [node name="Trak2Trim4e" type="Sprite2D" parent="StaticBody2D4"]
-position = Vector2(-142, 293)
+position = Vector2(-298, -382)
 rotation = -1.57079
 scale = Vector2(7.27344, 4.35938)
 texture = ExtResource("7_27bay")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-143, 395.5)
+position = Vector2(-296, 314)
 shape = SubResource("RectangleShape2D_ubhxj")
 
 [node name="Area2D" type="Area2D" parent="."]
