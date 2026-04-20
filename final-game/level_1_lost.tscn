@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://do3j1mpplh2tw"]
+[gd_scene load_steps=4 format=3 uid="uid://do3j1mpplh2tw"]
 
 [ext_resource type="Script" uid="uid://dtfic628kgnfb" path="res://try_again.gd" id="1_gds6a"]
+[ext_resource type="Texture2D" uid="uid://ddgglo2twdcnb" path="res://Lab/MusicLabSample.png" id="2_wk8va"]
+[ext_resource type="Script" uid="uid://bxhy7a1aqm3yo" path="res://music_lab_sample.gd" id="3_atm6l"]
 
 [node name="Level 1 lost" type="Control"]
 layout_mode = 3
@@ -26,6 +28,15 @@ offset_top = 276.0
 offset_right = 668.0
 offset_bottom = 345.0
 text = "Quit"
+
+[node name="MusicLabSample" type="Sprite2D" parent="."]
+process_mode = 3
+auto_translate_mode = 1
+z_index = -2
+position = Vector2(937, 540)
+scale = Vector2(0.646552, 0.675455)
+texture = ExtResource("2_wk8va")
+script = ExtResource("3_atm6l")
 
 [connection signal="pressed" from="Try again" to="Try again" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Try again" method="_on_quit_pressed"]
